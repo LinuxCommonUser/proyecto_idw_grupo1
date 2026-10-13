@@ -1,4 +1,4 @@
-# proyecto_idw_grupo1
+# Proyecto de Desarrollo Web Integrado - Sistema de Inventario El Meson
 
 Aplicación académica con Java 21 o superior, Spring Boot 4.1.1 y SQL Server. El catálogo existente se conserva. El frontend se sirve desde Spring Boot y sigue la distribución y colores del prototipo Figma.
 
