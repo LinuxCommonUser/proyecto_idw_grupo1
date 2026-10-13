@@ -7,7 +7,7 @@ Aplicación académica con Java 21 o superior, Spring Boot 4.1.1 y SQL Server. E
 Desde PowerShell, en la raíz del proyecto:
 
 ```powershell
-cd D:\el-meson-inventario
+cd D:\proyecto_idw_grupo1
 .\mvnw.cmd spring-boot:run
 ```
 
