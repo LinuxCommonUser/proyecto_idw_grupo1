@@ -1,29 +1,70 @@
 package com.proyecto.utp.proyecto_dwi.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import java.net.URI;
+import java.util.List;
+
+import jakarta.validation.Valid;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.proyecto.utp.proyecto_dwi.repository.ProductoRepository;
+import com.proyecto.utp.proyecto_dwi.dto.ProductoRequest;
+import com.proyecto.utp.proyecto_dwi.dto.ProductoResponse;
+import com.proyecto.utp.proyecto_dwi.service.ProductoService;
 
-@Controller
-@RequestMapping("/productos")
+@RestController
+@RequestMapping("/api/productos")
 public class ProductoController {
 
-    private final ProductoRepository productoRepository;
+    private final ProductoService productoService;
 
-    public ProductoController(ProductoRepository productoRepository) {
-        this.productoRepository = productoRepository;
+    public ProductoController(ProductoService productoService) {
+        this.productoService = productoService;
     }
 
-    // Retorna la vista MOCKUP003 Productos
     @GetMapping
-    public String listarProductos(Model model) {
-        // Envía los productos de SQL Server a la vista HTML
-        model.addAttribute("productos", productoRepository.findAll());
-        
-        // El String retornado corresponde al nombre del archivo HTML (productos.html)
-        return "productos"; 
+    public List<ProductoResponse> listar() {
+        return productoService.listar();
+    }
+
+    @GetMapping("/{id}")
+    public ProductoResponse obtener(@PathVariable Long id) {
+        return productoService.obtener(id);
+    }
+
+    @PostMapping
+    public ResponseEntity<ProductoResponse> crear(
+            @Valid @RequestBody ProductoRequest request) {
+        ProductoResponse producto = productoService.crear(request);
+
+        return ResponseEntity
+                .created(URI.create("/api/productos/" + producto.id()))
+                .body(producto);
+    }
+
+    @PutMapping("/{id}")
+    public ProductoResponse actualizar(
+            @PathVariable Long id,
+            @Valid @RequestBody ProductoRequest request) {
+        return productoService.actualizar(id, request);
+    }
+
+    @PatchMapping("/{id}/activar")
+    public ResponseEntity<Void> activar(@PathVariable Long id) {
+        productoService.activar(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("/{id}/desactivar")
+    public ResponseEntity<Void> desactivar(@PathVariable Long id) {
+        productoService.desactivar(id);
+        return ResponseEntity.noContent().build();
     }
 }

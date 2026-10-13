@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>El Mesón Inventario</title>
+    <link rel="stylesheet" href="/css/estilos.css" />
+    <script src="/js/app.js" defer></script>
+  </head>
+  <body>
+    <div class="aplicacion">
+      <aside class="barra-lateral">
+        <div class="marca">
+          <strong>El Mesón</strong><span>Sistema de inventario</span>
+        </div>
+        <div class="contexto">
+          <label for="sedeActiva">Sede activa</label
+          ><select id="sedeActiva" aria-label="Sede activa"></select>
+        </div>
+        <nav id="menu" class="menu" aria-label="Módulos"></nav>
+        <div class="perfil">
+          <strong id="nombreUsuario"></strong><span id="rolUsuario"></span
+          ><button id="cerrarSesion" type="button">Cerrar sesión</button>
+        </div>
+      </aside>
+      <main class="contenido">
+        <header class="encabezado">
+          <div>
+            <h1 id="titulo">Productos</h1>
+            <p id="subtitulo"></p>
+          </div>
+          <div id="accionesPagina" class="acciones"></div>
+        </header>
+        <p id="mensaje" class="mensaje" role="status" hidden></p>
+        <div id="vista" aria-live="polite"></div>
+      </main>
+    </div>
+  </body>
+</html>

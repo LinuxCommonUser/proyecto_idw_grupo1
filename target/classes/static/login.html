@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Acceso | El Mesón</title>
+    <link rel="stylesheet" href="/css/estilos.css" />
+    <script src="/js/login.js" defer></script>
+  </head>
+  <body>
+    <main class="acceso">
+      <section class="acceso-marca">
+        <h1>El Mesón</h1>
+        <h2>Sistema de inventario multisede</h2>
+        <p>
+          Control de entradas, salidas, mermas y transferencias entre sedes, con
+          historial de cada movimiento.
+        </p>
+      </section>
+      <section class="acceso-form">
+        <form id="loginForm" class="panel-formulario">
+          <h2 id="loginTitulo">Iniciar sesión</h2>
+          <p id="loginAyuda" class="ayuda">
+            Ingresa con tu usuario autorizado.
+          </p>
+          <p id="loginError" class="mensaje error" role="alert" hidden></p>
+          <div class="campo">
+            <label for="usuario">Usuario</label
+            ><input
+              id="usuario"
+              name="usuario"
+              required
+              minlength="3"
+              maxlength="50"
+              autocomplete="username"
+              pattern="[a-zA-Z0-9._-]{3,50}"
+            />
+          </div>
+          <div id="campoNombre" class="campo" hidden>
+            <label for="nombre">Nombre del administrador</label
+            ><input id="nombre" maxlength="150" autocomplete="name" />
+          </div>
+          <div class="campo">
+            <label for="password">Contraseña</label
+            ><input
+              id="password"
+              name="password"
+              type="password"
+              required
+              maxlength="128"
+              autocomplete="current-password"
+            />
+          </div>
+          <button id="ingresar" class="boton primario" type="submit">
+            Ingresar
+          </button>
+          <p class="ayuda">
+            Al ingresar verás las sedes que tienes autorizadas.
+          </p>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
